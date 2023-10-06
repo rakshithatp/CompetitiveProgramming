@@ -1,20 +1,19 @@
 class Solution:
     
     #Function to check if brackets are balanced or not.
-    def ispar(self,x):
+    def ispar(x):
         stack = []
-        mapping = {')':'(','}':'{',']':'['}
-        
+        mapping = {')': '(', '}': '{', ']': '['}
+    
         for char in x:
             if char in '({[':
-                 stack.append(char)
-            elif  char in ')}]':
-                if not stack:
+                stack.append(char)
+            elif char in ')}]':
+                if not stack or stack[-1] != mapping[char]:
                     return False
-                if stack[-1] == mapping[char]:
-                    stack.pop()
+                stack.pop()
             else:
                 return False
-                    
-        return not stack
+    
+        return len(stack) == 0
 
